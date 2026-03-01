@@ -7,13 +7,13 @@ import threading
 import pyperclip
 import rumps
 
-from magicspell.models import Tone, LLMProvider
+from magicspell.clipboard import ClipboardMonitor, copy_selected_text, paste_text
 from magicspell.config import Config
-from magicspell.llm_client import create_client
 from magicspell.corrector import Corrector
-from magicspell.clipboard import copy_selected_text, paste_text, ClipboardMonitor
-from magicspell.hotkey import HotkeyListener
 from magicspell.feedback import FeedbackManager
+from magicspell.hotkey import HotkeyListener
+from magicspell.llm_client import create_client
+from magicspell.models import Tone
 
 
 class MagicSpellApp(rumps.App):

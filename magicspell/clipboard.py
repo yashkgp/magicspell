@@ -3,11 +3,10 @@ from __future__ import annotations
 
 import threading
 import time
-from typing import Callable
+from collections.abc import Callable
 
 import pyperclip
 from pynput.keyboard import Controller, Key
-
 
 _keyboard = Controller()
 

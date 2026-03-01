@@ -1,7 +1,7 @@
 """Global hotkey listener using pynput."""
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 from pynput.keyboard import GlobalHotKeys
 

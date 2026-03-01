@@ -1,12 +1,11 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "magicspell"
 version = "0.1.0"
 description = "LLM-powered proofreading for macOS"
-readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
 
@@ -29,6 +28,9 @@ dev = [
 
 [project.scripts]
 magicspell = "magicspell.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["magicspell*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
