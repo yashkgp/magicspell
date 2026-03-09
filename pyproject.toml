@@ -16,6 +16,8 @@ dependencies = [
     "openai>=1.0.0",
     "anthropic>=0.20.0",
     "python-dotenv>=1.0.0",
+    "slack-bolt>=1.18.0",
+    "slack-sdk>=3.20.0",
 ]
 
 [project.optional-dependencies]
@@ -28,6 +30,7 @@ dev = [
 
 [project.scripts]
 magicspell = "magicspell.__main__:main"
+magicspell-slack = "magicspell.slack_bot:main"
 
 [tool.setuptools.packages.find]
 include = ["magicspell*"]
