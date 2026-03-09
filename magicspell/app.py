@@ -7,6 +7,8 @@ import threading
 import pyperclip
 import rumps
 
+import magicspell
+from magicspell import launchd
 from magicspell.clipboard import ClipboardMonitor, copy_selected_text, paste_text
 from magicspell.config import Config
 from magicspell.corrector import Corrector
@@ -42,9 +44,16 @@ class MagicSpellApp(rumps.App):
             "Auto-Correct Mode", callback=self._on_auto_correct
         )
 
+        start_at_login_item = rumps.MenuItem(
+            "Start at Login", callback=self._on_start_at_login
+        )
+        start_at_login_item.state = launchd.is_installed()
+
         provider_item = rumps.MenuItem(
             f"Provider: {self._config.provider.value}"
         )
+
+        about_item = rumps.MenuItem("About MagicSpell", callback=self._on_about)
 
         quit_item = rumps.MenuItem("Quit", callback=self._on_quit)
 
@@ -54,8 +63,10 @@ class MagicSpellApp(rumps.App):
             None,  # separator
             auto_correct_item,
             None,  # separator
+            start_at_login_item,
             provider_item,
             None,  # separator
+            about_item,
             quit_item,
         ]
 
@@ -145,6 +156,37 @@ class MagicSpellApp(rumps.App):
             self._feedback.notify("MagicSpell Error", str(exc))
         finally:
             loop.close()
+
+    # ------------------------------------------------------------------
+    # Start at Login
+    # ------------------------------------------------------------------
+
+    def _on_start_at_login(self, sender: rumps.MenuItem) -> None:
+        """Toggle the Launch Agent for starting MagicSpell on login."""
+        if launchd.is_installed():
+            launchd.uninstall()
+            sender.state = False
+            self._feedback.notify("MagicSpell", "Removed from Login Items")
+        else:
+            launchd.install()
+            sender.state = True
+            self._feedback.notify("MagicSpell", "Added to Login Items")
+
+    # ------------------------------------------------------------------
+    # About
+    # ------------------------------------------------------------------
+
+    def _on_about(self, sender: rumps.MenuItem) -> None:
+        """Show an About dialog with version information."""
+        rumps.alert(
+            title="About MagicSpell",
+            message=(
+                f"MagicSpell v{magicspell.__version__}\n\n"
+                "LLM-powered proofreading for macOS.\n"
+                "Press Cmd+Shift+G to correct selected text.\n\n"
+                f"Provider: {self._config.provider.value}"
+            ),
+        )
 
     # ------------------------------------------------------------------
     # Quit

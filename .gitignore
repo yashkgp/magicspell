@@ -26,6 +26,10 @@ env/
 .env
 *.env.local
 
+# py2app / packaging
+*.app
+.eggs/
+
 # Testing/tooling
 .pytest_cache/
 .mypy_cache/
