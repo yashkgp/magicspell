@@ -2,8 +2,11 @@
 from __future__ import annotations
 
 import threading
+from pathlib import Path
 
 import rumps
+
+_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
 
 
 class FeedbackManager:
@@ -13,9 +16,9 @@ class FeedbackManager:
         app: The :class:`rumps.App` instance whose icon will be manipulated.
     """
 
-    ICON_DEFAULT: str = "assets/icon.png"
-    ICON_ACTIVE: str = "assets/icon_active.png"
-    ICON_SUCCESS: str = "assets/icon_success.png"
+    ICON_DEFAULT: str = str(_ASSETS_DIR / "icon.png")
+    ICON_ACTIVE: str = str(_ASSETS_DIR / "icon_active.png")
+    ICON_SUCCESS: str = str(_ASSETS_DIR / "icon_success.png")
 
     def __init__(self, app: rumps.App) -> None:
         self._app = app

@@ -3,12 +3,15 @@ from __future__ import annotations
 
 import asyncio
 import threading
+from pathlib import Path
 
 import pyperclip
 import rumps
 
 import magicspell
 from magicspell import launchd
+
+_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
 from magicspell.clipboard import ClipboardMonitor, copy_selected_text, paste_text
 from magicspell.config import Config
 from magicspell.corrector import Corrector
@@ -22,7 +25,7 @@ class MagicSpellApp(rumps.App):
     """Menu-bar application that proofreads selected text via an LLM."""
 
     def __init__(self) -> None:
-        super().__init__("MagicSpell", icon="assets/icon.png", quit_button=None)
+        super().__init__("MagicSpell", icon=str(_ASSETS_DIR / "icon.png"), quit_button=None)
 
         # Core services ------------------------------------------------
         self._config = Config.load()
