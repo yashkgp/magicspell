@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 import threading
 from pathlib import Path
 
@@ -10,8 +11,6 @@ import rumps
 
 import magicspell
 from magicspell import launchd
-
-_ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets"
 from magicspell.clipboard import ClipboardMonitor, copy_selected_text, paste_text
 from magicspell.config import Config
 from magicspell.corrector import Corrector
@@ -19,6 +18,26 @@ from magicspell.feedback import FeedbackManager
 from magicspell.hotkey import HotkeyListener
 from magicspell.llm_client import create_client
 from magicspell.models import Tone
+
+
+def _resolve_assets_dir() -> Path:
+    """Locate the assets directory in both dev and py2app bundle modes.
+
+    In a py2app bundle, `magicspell/app.py` lives inside `python313.zip`,
+    so `Path(__file__).parent.parent` resolves *inside the zip* — not a
+    real filesystem path. py2app sets `sys.frozen = "macosx_app"`; we use
+    `NSBundle.mainBundle().resourcePath()` (the canonical Cocoa API) to
+    locate `Contents/Resources/`, which works regardless of how the bundle
+    was launched (Finder, `open`, launchd) — `os.environ['RESOURCEPATH']`
+    isn't reliably set in launchd-spawned processes.
+    """
+    if getattr(sys, "frozen", False):
+        from AppKit import NSBundle  # local import; PyObjC only loaded in bundle
+        return Path(NSBundle.mainBundle().resourcePath()) / "assets"
+    return Path(__file__).resolve().parent.parent / "assets"
+
+
+_ASSETS_DIR = _resolve_assets_dir()
 
 
 class MagicSpellApp(rumps.App):
