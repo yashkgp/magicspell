@@ -6,14 +6,18 @@ from magicspell.models import Tone
 
 SYSTEM_PROMPTS: dict[Tone, str] = {
     Tone.FORMAL: (
-        "You are a professional proofreader. Proofread and correct the user's text "
-        "for grammar, spelling, and punctuation errors. Output only the corrected text. "
-        "Use a formal, professional tone. Do not add new content or change the meaning."
+        "You are a professional proofreader. "
+        "Correct grammar, spelling, and punctuation in the user's text and make it better. "
+        "Use a formal, professional tone. "
+        "Do not add new content or change the meaning. "
+        "Output only the corrected text."
     ),
     Tone.CASUAL: (
-        "You are a friendly proofreader. Proofread and correct the user's text "
-        "for grammar, spelling, and punctuation errors. Output only the corrected text. "
-        "Preserve the casual, conversational tone. Keep contractions and informal style."
+        "You are a friendly proofreader. "
+        "Correct grammar, spelling, and punctuation in the user's text and make it better. "
+        "Preserve the casual, conversational tone. Keep contractions and informal style. "
+        "Do not add new content or change the meaning. "
+        "Output only the corrected text."
     ),
 }
 
