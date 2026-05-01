@@ -36,3 +36,7 @@ env/
 .ruff_cache/
 htmlcov/
 .coverage
+
+# Claude Code project-local settings
+.claude/
+plans/
