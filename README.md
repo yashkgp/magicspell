@@ -38,7 +38,7 @@ It also ships with a **Slack bot** that adds a `/proofread` slash command to you
 - **Multi-provider** — supports both Anthropic (Claude) and OpenAI (GPT)
 - **Slack integration** — `/proofread` slash command with channel-aware tone matching
 - **Start at Login** — optional Launch Agent for automatic startup
-- **Standalone .app** — build a native macOS app bundle with py2app
+- **Standalone .app** *(WIP — see note below)* — native macOS app bundle via py2app
 
 ---
 
@@ -50,7 +50,9 @@ It also ships with a **Slack bot** that adds a `/proofread` slash command to you
 - Python 3.11+
 - An API key from [Anthropic](https://console.anthropic.com/) or [OpenAI](https://platform.openai.com/)
 
-### Quick start
+### Quick start (recommended)
+
+> **The Python install is the supported path right now.** Run MagicSpell with the `magicspell` command after `pip install -e .` — see below.
 
 ```bash
 # Clone the repo
@@ -72,7 +74,9 @@ magicspell
 
 > **macOS permissions:** On first launch, macOS will ask for **Accessibility** access (needed to simulate Cmd+C / Cmd+V). Grant it in System Settings > Privacy & Security > Accessibility.
 
-### Build as a standalone .app
+### Build as a standalone .app (WIP)
+
+> ⚠️ **Work in progress.** The `.app` bundle build via py2app is still being stabilized — bundled dylib paths, asset resolution, and Launch Agent registration aren't reliable across machines yet. **For day-to-day use, stick with the `magicspell` Python command from Quick Start above.** The instructions below are kept for contributors who want to help fix the build.
 
 ```bash
 pip install -e ".[dev]"
