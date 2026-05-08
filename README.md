@@ -5,8 +5,8 @@
 <h1 align="center">MagicSpell</h1>
 
 <p align="center">
-  <strong>LLM-powered proofreading that lives in your macOS menu bar.</strong><br/>
-  Select text anywhere, hit a hotkey, and get it corrected in place — powered by Claude or GPT.
+  <strong>An open-source, hotkey-driven Grammarly alternative for macOS.</strong><br/>
+  Select text anywhere, hit <kbd>⌘</kbd><kbd>⇧</kbd><kbd>G</kbd>, and get it proofread in place — powered by Claude or GPT.
 </p>
 
 <p align="center">
@@ -19,6 +19,7 @@
 <p align="center">
   <a href="#installation">Installation</a> &bull;
   <a href="#usage">Usage</a> &bull;
+  <a href="#how-it-compares-to-grammarly">vs. Grammarly</a> &bull;
   <a href="#slack-bot">Slack Bot</a> &bull;
   <a href="#configuration">Configuration</a> &bull;
   <a href="#development">Development</a> &bull;
@@ -52,6 +53,26 @@ It also ships with a **Slack bot** that adds a `/proofread` slash command to you
 - **Slack integration** — `/proofread` slash command with channel-aware tone matching
 - **Start at Login** — optional Launch Agent for automatic startup
 - **Standalone .app** *(WIP — see note below)* — native macOS app bundle via py2app
+
+---
+
+## How it compares to Grammarly
+
+MagicSpell covers the proofreading core that most people actually use Grammarly for — fixing grammar, spelling, and tone — and trades the rest for being open source and self-hosted.
+
+| | **MagicSpell** | **Grammarly** |
+|---|---|---|
+| Open source | ✅ MIT | ❌ Proprietary |
+| Bring your own LLM key | ✅ Anthropic or OpenAI | ❌ Closed backend |
+| On-demand global hotkey | ✅ <kbd>⌘⇧G</kbd> | ❌ |
+| Real-time inline corrections | ❌ (on-demand only) | ✅ |
+| Works in any macOS app | ✅ Anywhere with text selection | Partial (browser + Office) |
+| Tone switching (formal / casual) | ✅ | ✅ |
+| Slack `/proofread` command | ✅ Built-in | ❌ |
+| Subscription cost | None (you pay your own LLM API) | $12–30/mo |
+| Plagiarism / engagement scores | ❌ | ✅ |
+
+> Grammarly is a polished product with a much broader feature set — this table highlights the *trade-offs* of going open source, not a claim that MagicSpell is feature-equivalent. If you want real-time inline corrections in every text field on every OS, Grammarly remains the right choice. If you want a small, hackable, BYO-key tool you can read end-to-end in an afternoon, MagicSpell is for you.
 
 ---
 
