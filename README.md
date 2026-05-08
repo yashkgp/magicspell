@@ -25,6 +25,12 @@
   <a href="#architecture">Architecture</a>
 </p>
 
+<!-- DEMO_GIF: drop a 12–15s recording here once available, e.g.
+<p align="center">
+  <img src="assets/demo.gif" width="640" alt="MagicSpell demo" />
+</p>
+-->
+
 ---
 
 ## What it does
